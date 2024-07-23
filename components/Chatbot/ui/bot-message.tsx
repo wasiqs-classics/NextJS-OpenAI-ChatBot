@@ -1,6 +1,7 @@
 import {RiRobot3Line} from 'react-icons/ri';
+import { Message } from '../chatbot';
 
-export default function BotMessage() {
+export default function BotMessage({role, content}: Message) {
     return (
         <div className='flex w-full my-2'>
             <div className='flex justify-center p-1 w-8 h-8 border bg-slate-800 rounded-full mr-2 text-white'>
@@ -8,8 +9,8 @@ export default function BotMessage() {
             </div>
 
             <div>
-                <div className='font-bold'>Bot</div>
-                <p>Hello! How can I help you?</p>
+                <div className='font-bold'>{role}</div>
+                <p>{content}</p>
             </div>
         </div>
     )
