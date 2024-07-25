@@ -6,6 +6,12 @@ const openAI = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY
 });
 
+/**
+ * Chat Completion
+ * @param chatMessages 
+ * @returns 
+ */
+
 export async function chatCompletion(chatMessages: Message[]) {
     console.log('FROM BACKEND: ', chatMessages);  
 
