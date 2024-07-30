@@ -1,10 +1,18 @@
 'use server';
 import OpenAI from "openai";
 import { Message } from "@/components/Chatbot/chatbot";
+import fs from 'fs';
+import path from "path";
 
 const openAI = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY
 });
+
+
+// Read the FAQs JSON File
+const filePath = path.resolve(process.cwd(), 'data', 'faqs.json');
+const faqs = JSON.parse(fs.readFileSync(filePath, 'utf-8')).faqs;
+console.log(faqs);
 
 /**
  * Chat Completion
@@ -13,19 +21,24 @@ const openAI = new OpenAI({
  */
 
 export async function chatCompletion(chatMessages: Message[]) {
-    console.log('FROM BACKEND: ', chatMessages);  
+    try {
+        
+        console.log('FROM BACKEND: ', chatMessages);  
 
-    const chat = [
-        {role: 'system', content: 'You are a helpful assistant'},
-        ...chatMessages
-    ];
-
-    const completion = await openAI.chat.completions.create({
-        messages: chat,
-        model: 'gpt-4o-mini'
-    });
-
-    console.log('COMPLETION', completion.choices[0]);
-    return completion;
-
+        const chat = [
+            {role: 'system', content: 'You are a helpful assistant'},
+            ...chatMessages
+        ];
+    
+        const completion = await openAI.chat.completions.create({
+            messages: chat,
+            model: 'gpt-4o-mini'
+        });
+    
+        console.log('COMPLETION', completion.choices[0]);
+        return completion;
+        
+    } catch (error) {
+        console.log(error);
+    }
 }
