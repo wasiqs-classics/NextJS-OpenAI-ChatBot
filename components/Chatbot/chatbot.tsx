@@ -1,5 +1,5 @@
 "use client";
-import { FormEvent, useState } from 'react';
+import { FormEvent, useState, useRef, useEffect } from 'react';
 import {TbMessageChatbot} from 'react-icons/tb'
 import BotMessage from './ui/bot-message';
 import UserMessage from './ui/user-message';
@@ -12,12 +12,24 @@ export type Message = {
 }
 
 export default function Chatbot() {
+    const chatContainerRef = useRef <HTMLDivElement | null> (null);
     const [showChat, setShowChat] = useState(false);
     const [userMessage, setUserMessage] = useState('');
     const [loading, setLoading] = useState(false);
     const [messages, setMessages] = useState<Message[]>([
         {role: 'assistant', content: 'Hello!, How may I help you today?'}
     ]);
+
+    // Scroll to the bottom when messages changes
+
+    useEffect(() =>{
+        if (chatContainerRef.current) {
+            chatContainerRef.current.scrollTo({
+                top: chatContainerRef.current.scrollHeight,
+                behavior: 'smooth'
+            })
+        }
+    }, [messages, loading]);
 
     const handleSendMessage = async(e: FormEvent) => {
         e.preventDefault();
@@ -35,7 +47,10 @@ export default function Chatbot() {
 
         // Updating the Message State
         setMessages((prevMessage) => [...prevMessage, newMessage]);
+        
+        //  set loading to true and clear input text
         setLoading(true);
+        setUserMessage("");
 
         // Let's talk to OpenAI
         try {
@@ -46,7 +61,6 @@ export default function Chatbot() {
             // Call the chat completion API
             const res = await chatCompletion([...chatMessages, newMessage]);
             console.log('RESPONSE: ', res);
-            setUserMessage("");
             setMessages(prevMessages => [...prevMessages, res]);
             
         } catch (error) {
@@ -70,11 +84,11 @@ export default function Chatbot() {
                     <div className='flex flex-col h-full'>
                         {/* CHAT HEADER */}
                         <div className='border-b-2 py-1 border-gray-800'>
-                            <h2 className='font-semibold text-lg tracking-tight'>Chatbot</h2>
+                            <h2 className='font-semibold text-lg tracking-tight'>AI Search ChatBot</h2>
                             <p>Powered by OpenAI</p>
                         </div>
                         {/* CHAT CONTAINER */}
-                        <div className='flex flex-col flex-1 items-center p-2 mt-5 overflow-y-auto'>
+                        <div ref={chatContainerRef} className='flex flex-col flex-1 items-center p-2 mt-5 overflow-y-auto'>
                             {messages && messages.map((m, i) => {
                                 return m.role === 'assistant' ? (
                                     <BotMessage {...m} key={i} />
@@ -82,6 +96,13 @@ export default function Chatbot() {
                                     <UserMessage {...m} key={i} />
                                 )
                             })}
+
+                            {
+                                loading && (
+                                    <div className='text-center text-gray-500 mt-2'>loading ...</div>
+                                )
+                            }
+
                         </div>
                         {/* MESSAGE INPUT */}
                         <ChatInput 
