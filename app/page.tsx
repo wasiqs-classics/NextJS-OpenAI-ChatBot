@@ -1,6 +1,19 @@
+"use client"
+import React, { useEffect, useState } from 'react';
+import ProductCard from '@/components/ProductCard';
 import Chatbot from "@/components/Chatbot/chatbot";
+import productsData from '@/data/products.json';
+
+
 
 export default function Home() {
+  const [products, setProducts] = useState([]);
+  
+  useEffect(() => {
+    setProducts(productsData);
+  }, []);
+ 
+
   return (
     <main className="flex min-h-screen flex-col items-center p-24">
       <h1 className="text-5xl">AI Seach - Beta</h1>
@@ -11,6 +24,14 @@ export default function Home() {
       <br />
       <br />
       <p>Click on the Chatbot Icon at the bottom right corner to begin!</p>
+      <br />
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+        {products.map(product => (
+          <ProductCard key={product.name} {...product} />
+        ))}
+      </div>
+
       <Chatbot />
     </main>
   );

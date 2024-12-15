@@ -1,0 +1,206 @@
+[
+    {
+      "name": "Men yellow t-shirt polo size small",
+      "description": "Made of high-quality cotton fabric, perfect for casual wear",
+      "price": "Rs 849",
+      "sizes": ["S", "MandL"],
+      "route": "/products/men-yellow-t-shirt-polo-size-small"
+    },
+    {
+      "name": "Women blue A-line dress available in sizes small",
+      "description": "Material: cotton blend, designed with a collar neck",
+      "price": "Rs 849",
+      "sizes": ["S", "M", "L", "extra-L"],
+      "route": "/products/women-blue-a-line-dress-available-in-sizes-small"
+    },
+    {
+      "name": "Kids red t-shirt",
+      "description": "100% cotton, ideal for summer wear",
+      "price": "Rs 599",
+      "sizes": ["S", "M", "L"],
+      "route": "/products/kids-red-t-shirt"
+    },
+    {
+      "name": "Men's black leather jacket",
+      "description": "Stylish design for winter, made from genuine leather",
+      "price": "Rs 2999",
+      "sizes": ["MandL"],
+      "route": "/products/mens-black-leather-jacket"
+    },
+    {
+      "name": "Women's floral summer dress size small",
+      "description": "Light-weight, breathable fabric, perfect for casual outings",
+      "price": "Rs 1299",
+      "sizes": ["S", "M", "L"],
+      "route": "/products/womens-floral-summer-dress-size-small"
+    },
+    {
+      "name": "Men blue jeans",
+      "description": "High-quality fabric with a slim fit design",
+      "price": "Rs 899",
+      "sizes": ["32", "34", "36"],
+      "route": "/products/men-blue-jeans"
+    },
+    {
+      "name": "Women black high heels",
+      "description": "Elegant design, ideal for formal events",
+      "price": "Rs 1499",
+      "sizes": ["5", "6", "7", "8"],
+      "route": "/products/women-black-high-heels"
+    },
+    {
+      "name": "Kids denim shorts",
+      "description": "Durable and comfortable for summer activities",
+      "price": "Rs 499",
+      "sizes": ["S", "M", "L"],
+      "route": "/products/kids-denim-shorts"
+    },
+    {
+      "name": "Men white formal shirt",
+      "description": "Perfect for office and formal events",
+      "price": "Rs 1199",
+      "sizes": ["M", "L", "XL"],
+      "route": "/products/men-white-formal-shirt"
+    },
+    {
+      "name": "Women red handbag",
+      "description": "One size fits all, perfect for daily use",
+      "price": "Rs 1099",
+      "sizes": ["one-size"],
+      "route": "/products/women-red-handbag"
+    },
+    {
+      "name": "Men sports shoes",
+      "description": "Comfortable for running and daily activities",
+      "price": "Rs 1299",
+      "sizes": ["8", "9", "10", "11"],
+      "route": "/products/men-sports-shoes"
+    },
+    {
+      "name": "Women's black leggings",
+      "description": "Stretchable and perfect for casual wear or workouts",
+      "price": "Rs 699",
+      "sizes": ["S", "M", "L", "XL"],
+      "route": "/products/womens-black-leggings"
+    },
+    {
+      "name": "Kids' raincoat",
+      "description": "Waterproof and durable for rainy weather",
+      "price": "Rs 799",
+      "sizes": ["S", "M", "L"],
+      "route": "/products/kids-raincoat"
+    },
+    {
+      "name": "Men's sunglasses",
+      "description": "Stylish men's sunglasses with UV protection",
+      "price": "Rs 599",
+      "sizes": ["one-size"],
+      "route": "/products/mens-sunglasses"
+    },
+    {
+      "name": "Women's leather wallet",
+      "description": "Compact size, ideal for daily use",
+      "price": "Rs 999",
+      "sizes": ["one-size"],
+      "route": "/products/womens-leather-wallet"
+    },
+    {
+      "name": "Men's wristwatch",
+      "description": "Water-resistant and perfect for formal wear",
+      "price": "Rs 1499",
+      "sizes": ["one-size"],
+      "route": "/products/mens-wristwatch"
+    },
+    {
+      "name": "Women's pearl necklace",
+      "description": "Perfect for formal occasions or as a gift",
+      "price": "Rs 1299",
+      "sizes": ["one-size"],
+      "route": "/products/womens-pearl-necklace"
+    },
+    {
+      "name": "Men's black belt",
+      "description": "Perfect for formal and casual outfits",
+      "price": "Rs 699",
+      "sizes": ["32", "34", "36"],
+      "route": "/products/mens-black-belt"
+    },
+    {
+      "name": "Women's red silk scarf",
+      "description": "Elegant and soft, perfect for formal or casual wear",
+      "price": "Rs 499",
+      "sizes": ["one-size"],
+      "route": "/products/womens-red-silk-scarf"
+    },
+    {
+      "name": "Men's grey hoodie",
+      "description": "Comfortable and perfect for casual wear",
+      "price": "Rs 999",
+      "sizes": ["M", "L", "XL"],
+      "route": "/products/mens-grey-hoodie"
+    },
+    {
+      "name": "Kids' running shoes",
+      "description": "Lightweight and comfortable for sports activities",
+      "price": "Rs 799",
+      "sizes": ["5", "6", "7", "8"],
+      "route": "/products/kids-running-shoes"
+    },
+    {
+      "name": "Women's gold earrings",
+      "description": "Elegant gold-plated earrings, perfect for formal events",
+      "price": "Rs 899",
+      "sizes": ["one-size"],
+      "route": "/products/womens-gold-earrings"
+    },
+    {
+      "name": "Men's leather gloves",
+      "description": "Ideal for winter and formal occasions",
+      "price": "Rs 999",
+      "sizes": ["M", "L", "XL"],
+      "route": "/products/mens-leather-gloves"
+    },
+    {
+      "name": "Women's denim jacket",
+      "description": "Perfect for casual wear",
+      "price": "Rs 1499",
+      "sizes": ["S", "M", "L"],
+      "route": "/products/womens-denim-jacket"
+    },
+    {
+      "name": "Men's casual shorts",
+      "description": "Comfortable for summer wear",
+      "price": "Rs 799",
+      "sizes": ["M", "L", "XL"],
+      "route": "/products/mens-casual-shorts"
+    },
+    {
+      "name": "Women's running shoes",
+      "description": "Lightweight and ideal for workouts",
+      "price": "Rs 1299",
+      "sizes": ["6", "7", "8", "9"],
+      "route": "/products/womens-running-shoes"
+    },
+    {
+      "name": "Men's black blazer",
+      "description": "Perfect for formal events and business wear",
+      "price": "Rs 2499",
+      "sizes": ["M", "L", "XL"],
+      "route": "/products/mens-black-blazer"
+    },
+    {
+      "name": "Women's silk saree",
+      "description": "Perfect for traditional occasions",
+      "price": "Rs 1999",
+      "sizes": ["one-size"],
+      "route": "/products/womens-silk-saree"
+    },
+    {
+      "name": "Men's formal trousers",
+      "description": "Slim fit design, ideal for office wear",
+      "price": "Rs 1299",
+      "sizes": ["32", "34", "36"],
+      "route": "/products/mens-formal-trousers"
+    }
+  ]
+  

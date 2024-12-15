@@ -1,54 +1,80 @@
+
 'use server';
 import OpenAI from "openai";
 import { Message } from "@/components/Chatbot/chatbot";
 import fs from 'fs';
 import path from "path";
 
+
+
 const openAI = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY
 });
 
-// FAQ Type - Creating a new type here
-type FAQ = {
-    question: string;
-    answer: string;
+// Product Type - Updated to match products.json structure
+type Product = {
+    name: string;
+    description: string;
+    price: string;
+    sizes: string[];
+    route: string;
 }
 
-
-// Read the FAQs JSON File
-const filePath = path.resolve(process.cwd(), 'data', 'faqs.json');
-const faqs: FAQ[] = JSON.parse(fs.readFileSync(filePath, 'utf-8')).faqs;
-console.log(faqs);
+// Read the Products JSON File
+const filePath = path.resolve(process.cwd(), 'data', 'products.json');
+const products: Product[] = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+//console.log(products);
 
 /**
  * Chat Completion
  * @param chatMessages 
  * @returns 
  */
-
 export async function chatCompletion(chatMessages: Message[]) {
     try {
-        
         console.log('FROM BACKEND: ', chatMessages);  
 
-        // Checking if the user question is in the FAQ array
+        // Checking if the user question matches any product
+        const userQuestion = chatMessages.at(-1)?.content.toLowerCase();
+        const matchedProduct = products.find(product => 
+            userQuestion?.includes(product.name.toLowerCase()) || 
+            userQuestion?.includes(product.description.toLowerCase())
+        );
 
-        const faqsAnswer = faqs.find(faq => chatMessages.at(-1)?.content.toLowerCase().includes(faq.question.toLowerCase()));
 
-        if (faqsAnswer) {
-            console.log(faqsAnswer);
-            return {role: 'assistant', content: faqsAnswer.answer} as Message;
+        if (matchedProduct) {
+            console.log('Product found:', matchedProduct);
+            const response = `## ${matchedProduct.name}
+
+        ${matchedProduct.description}
+
+        **Price:** ${matchedProduct.price}
+        **Available Sizes:** ${matchedProduct.sizes.join(', ')}
+
+        [Click here to view product](${matchedProduct.route})`;
+            
+            return { 
+                role: 'assistant', 
+                content: response,
+                isMarkdown: true // Add this flag to indicate markdown content
+            } as Message;
         }
 
         console.log('Reaching out to OPENAI API ...');
         
-        // Chat to be sent to OPEN AI
-
+        // Chat to be sent to OPEN AI with product context
         const chat = [
-            {role: 'system', content: 'You are a helpful assistant'},
-            ...faqs.map(faq => ({
+            {
+                role: 'system', 
+                content: 'You are a helpful shopping assistant. When suggesting products, always include their full details and URL from the product catalog. The URL address will look like http://localhost:3000/route where route is the actual rout that you will get. Make sure the URL opens in a new window.'
+            },
+            ...products.map(product => ({
                 role: 'system',
-                content: `Q: ${faq.question}\nA: ${faq.answer}`
+                content: `Product: ${product.name}
+Description: ${product.description}
+Price: ${product.price}
+Sizes: ${product.sizes.join(', ')}
+URL: ${product.route}`
             })),
             ...chatMessages
         ];
@@ -62,18 +88,20 @@ export async function chatCompletion(chatMessages: Message[]) {
             throw new Error("Invalid response from OPENAI API!");
         }
 
-        // Bot / Assistant Message
-        const assistantMesage = completion.choices[0].message?.content;
+        const assistantMessage = completion.choices[0].message?.content;
 
-        if (!assistantMesage) {
+        if (!assistantMessage) {
             throw new Error("No message from OPENAI API");
         }
     
         console.log('COMPLETION', completion.choices[0]);
-        return {role: 'assistant', content: assistantMesage} as Message;
+        return { role: 'assistant', content: assistantMessage } as Message;
         
     } catch (error) {
         console.log(error);
-        return {role: 'assistant', content: "I'm sorry, something went wrong. Please try again later."} as Message;
+        return {
+            role: 'assistant', 
+            content: "I'm sorry, something went wrong. Please try again later."
+        } as Message;
     }
 }
