@@ -7,7 +7,7 @@ import productsData from '@/data/products.json';
 
 
 export default function Home() {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<{ name: string; description: string; price: string; sizes: string[]; route: string; }[]>([]);
   
   useEffect(() => {
     setProducts(productsData);
